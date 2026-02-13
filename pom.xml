@@ -11,7 +11,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.example</groupId>
+    <groupId>com.shotaroi</groupId>
     <artifactId>mini-core-banking-system</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <name>mini-core-banking-system</name>
