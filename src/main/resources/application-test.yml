@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:tc:postgresql:16-alpine:///bankdb
+    username: bankuser
+    password: bankpass
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+
+jwt:
+  secret: test-secret-at-least-64-chars-for-hs256-algorithm-xxxxxxxxxxxx
+  expiration-ms: 3600000
