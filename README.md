@@ -367,22 +367,24 @@ curl -X GET "http://localhost:8080/api/admin/audit?page=0&size=20" \
 ## Testing
 
 ```mermaid
-graph TD
-    subgraph Unit[Unit Tests - TransferServiceTest]
-        U1[Idempotency key required]
-        U2[Same payload returns existing]
-        U3[Different payload returns 409]
+graph LR
+    subgraph Unit["Unit Tests"]
+        U1[Idempotency key]
+        U2[Same payload]
+        U3[Different payload 409]
         U4[Rejects non-owner]
-        U5[Rejects insufficient funds]
+        U5[Insufficient funds]
     end
 
-    subgraph Int[Integration Tests - TransferIntegrationTest]
+    subgraph Int["Integration Tests"]
         I1[Successful transfer]
         I2[Idempotency same key]
-        I3[Idempotency conflict 409]
-        I4[Concurrency 20 transfers]
+        I3[Idempotency conflict]
+        I4[Concurrency 20]
     end
 ```
+
+*Unit: TransferServiceTest (8 cases) | Integration: TransferIntegrationTest (4 cases)*
 
 ### Run tests
 
