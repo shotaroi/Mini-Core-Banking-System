@@ -142,7 +142,7 @@ public class TransferService {
     private boolean samePayload(Transfer t, TransferRequest request) {
         return Objects.equals(t.getFromAccountId(), request.fromAccountId())
                 && Objects.equals(t.getToAccountId(), request.toAccountId())
-                && t.getAmount().compareTo(request.amount()) == 0
+                && t.getAmount().compareTo(request.amount()) == 0 // BigDecimal.compareTo() returns 0 if the two values are equal, otherwise it returns -1 or 1. Should not be used for equality checks.
                 && Objects.equals(t.getCurrency(), request.currency());
     }
 

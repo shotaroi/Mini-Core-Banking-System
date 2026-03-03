@@ -45,6 +45,7 @@ public class CustomerService {
         Customer customer = customerRepository.findByEmail(request.email().toLowerCase())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid email or password"));
 
+        // compare the password in the request with the password hash in the database using the password encoder.
         if (!passwordEncoder.matches(request.password(), customer.getPasswordHash())) {
             throw new IllegalArgumentException("Invalid email or password");
         }

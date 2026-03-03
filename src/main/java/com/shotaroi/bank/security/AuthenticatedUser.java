@@ -2,7 +2,7 @@ package com.shotaroi.bank.security;
 
 public record AuthenticatedUser(Long id, String email) {
 
-    public static AuthenticatedUser from(Object principal) {
+    public static AuthenticatedUser from(Object principal) { // instead of this, controllers should use @AuthenticationPrincipal AuthenticatedUser user
         if (principal instanceof AuthenticatedUser au) {
             return au;
         }

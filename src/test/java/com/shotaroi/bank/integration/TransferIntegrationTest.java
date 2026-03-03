@@ -207,6 +207,7 @@ class TransferIntegrationTest {
                 .andExpect(status().isConflict());
     }
 
+    // The concurrency test is specifically about correctness under stress, not about performance or throughput.
     @Test
     void concurrency_20TransfersNoNegativeBalance() throws Exception {
         int numTransfers = 20;
@@ -256,7 +257,7 @@ class TransferIntegrationTest {
 
         latch.countDown();
         executor.shutdown();
-        while (!executor.awaitTermination(30, java.util.concurrent.TimeUnit.SECONDS)) {
+        while (!executor.awaitTermination(30, java.util.concurrent.TimeUnit.SECONDS)) { // awaitTermination always takes a timeout; it can’t wait indefinitely in one call. The loop lets you keep waiting until the executor actually terminates, instead of giving up after 30 seconds.
             Thread.sleep(100);
         }
 

@@ -10,7 +10,7 @@ public class IbanGenerator {
 
     private static final String COUNTRY_CODE = "SE";
     private static final int CHECK_DIGITS = 0;
-    private static final String BANK_CODE = "BANK";
+    private static final String BANK_CODE = "BANK"; // In real banking in Sweden, it's the clearing number. 
     private static final int ACCOUNT_NUMBER_LENGTH = 16;
     private static final SecureRandom RANDOM = new SecureRandom();
 

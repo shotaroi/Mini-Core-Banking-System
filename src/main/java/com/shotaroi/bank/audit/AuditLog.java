@@ -26,6 +26,7 @@ public class AuditLog {
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
+    // @PrePersist runs before the entity is first persisted. It sets createdAt to the current time so it is never null and is not set manually.
     @PrePersist
     protected void onCreate() {
         createdAt = Instant.now();

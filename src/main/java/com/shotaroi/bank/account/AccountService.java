@@ -106,9 +106,9 @@ public class AccountService {
         account.setBalance(account.getBalance().add(amount));
         accountRepository.save(account);
 
-        LedgerEntry entry = createLedgerEntry(account.getId(), LedgerEntry.EntryType.DEPOSIT, amount, account.getCurrency(), null, request.reference());
+        LedgerEntry entry = createLedgerEntry(account.getId(), LedgerEntry.EntryType.DEPOSIT, amount, account.getCurrency(), null, );
         ledgerRepository.save(entry);
-
+request.reference()
         auditService.log(customerId, "DEPOSIT", "accountId=%d, amount=%s %s".formatted(accountId, amount, account.getCurrency()));
         log.info("Deposit: accountId={}, amount={} {}, newBalance={}", accountId, amount, account.getCurrency(), account.getBalance());
     }

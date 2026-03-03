@@ -58,13 +58,13 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.BAD_REQUEST, message, request);
     }
 
-    @ExceptionHandler(org.springframework.orm.ObjectOptimisticLockingFailureException.class)
+    @ExceptionHandler(org.springframework.orm.ObjectOptimisticLockingFailureException.class) // This is a Hibernate exception that is thrown when a concurrent update is detected.
     public ResponseEntity<ApiError> handleOptimisticLock(org.springframework.orm.ObjectOptimisticLockingFailureException ex, WebRequest request) {
         log.warn("Optimistic lock failure (retry recommended): {}", ex.getMessage());
         return buildResponse(HttpStatus.CONFLICT, "Concurrent modification. Please retry.", request);
     }
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(Exception.class) // This is a catch-all exception handler for any exception that is not caught by the other handlers.
     public ResponseEntity<ApiError> handleGeneric(Exception ex, WebRequest request) {
         log.error("Unexpected error", ex);
         return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, "An unexpected error occurred", request);
